@@ -3,6 +3,10 @@
   This file is intended to be loaded by Logisim-evolution v3.8.0(https://github.com/logisim-evolution/).
 
   <lib desc="#Wiring" name="0">
+    <tool name="Splitter">
+      <a name="fanout" val="29"/>
+      <a name="incoming" val="29"/>
+    </tool>
     <tool name="Pin">
       <a name="appearance" val="classic"/>
     </tool>
@@ -534,6 +538,7 @@
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="4.0"/>
     <appear>
+      <rect fill="#ffffff" height="160" stroke="#000000" width="103" x="90" y="190"/>
       <rect fill="#ffffff" height="126" stroke="#000000" width="92" x="94" y="37"/>
       <rect height="126" stroke="none" width="25" x="94" y="37"/>
       <text dominant-baseline="central" fill="#ffffff" font-family="SansSerif" font-size="7" text-anchor="middle" x="106" y="151">Write</text>
@@ -554,6 +559,71 @@
       <text dominant-baseline="central" fill="#ffffff" font-family="SansSerif" font-size="12" text-anchor="middle" x="174" y="89">A</text>
       <ellipse cx="174" cy="129" rx="8" ry="8" stroke="none"/>
       <text dominant-baseline="central" fill="#ffffff" font-family="SansSerif" font-size="12" text-anchor="middle" x="174" y="129">B</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="113" y="194">zero</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="170" y="194">random</text>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(360,410)" stroke-width="0" width="53" x="90" y="200"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(360,500)" stroke-width="0" width="53" x="90" y="210"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(360,590)" stroke-width="0" width="53" x="90" y="220"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(530,320)" stroke-width="0" width="53" x="90" y="230"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(530,410)" stroke-width="0" width="53" x="90" y="240"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(530,500)" stroke-width="0" width="53" x="90" y="250"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(530,590)" stroke-width="0" width="53" x="90" y="260"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(700,320)" stroke-width="0" width="53" x="90" y="270"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(700,410)" stroke-width="0" width="53" x="90" y="280"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(700,500)" stroke-width="0" width="53" x="90" y="290"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(700,590)" stroke-width="0" width="53" x="90" y="300"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(870,320)" stroke-width="0" width="53" x="90" y="310"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(870,410)" stroke-width="0" width="53" x="90" y="320"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(870,500)" stroke-width="0" width="53" x="90" y="330"/>
+      <visible-register height="10" path="/RegisterFile16A(420,210)/Register(870,590)" stroke-width="0" width="53" x="90" y="340"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(360,410)" stroke-width="0" width="53" x="140" y="200"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(360,500)" stroke-width="0" width="53" x="140" y="210"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(360,590)" stroke-width="0" width="53" x="140" y="220"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(530,320)" stroke-width="0" width="53" x="140" y="230"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(530,410)" stroke-width="0" width="53" x="140" y="240"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(530,500)" stroke-width="0" width="53" x="140" y="250"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(530,590)" stroke-width="0" width="53" x="140" y="260"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(700,320)" stroke-width="0" width="53" x="140" y="270"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(700,410)" stroke-width="0" width="53" x="140" y="280"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(700,500)" stroke-width="0" width="53" x="140" y="290"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(700,590)" stroke-width="0" width="53" x="140" y="300"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(870,320)" stroke-width="0" width="53" x="140" y="310"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(870,410)" stroke-width="0" width="53" x="140" y="320"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(870,500)" stroke-width="0" width="53" x="140" y="330"/>
+      <visible-register height="10" path="/RegisterFile16B(420,340)/Register(870,590)" stroke-width="0" width="53" x="140" y="340"/>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="196">00</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="206">01</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="216">02</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="226">03</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="236">04</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="246">05</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="256">06</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="266">07</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="276">08</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="286">09</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="296">10</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="306">11</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="316">12</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="326">13</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="336">14</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="84" y="346">15</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="196">16</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="206">17</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="216">18</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="226">19</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="236">20</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="246">21</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="256">22</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="266">23</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="276">24</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="286">25</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="296">26</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="306">27</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="316">28</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="326">29</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="336">30</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="7" text-anchor="middle" x="204" y="346">31</text>
+      <polyline fill="none" points="140,190 140,205" stroke="#000000"/>
       <circ-anchor facing="east" x="90" y="40"/>
       <circ-port dir="in" pin="290,220" x="90" y="50"/>
       <circ-port dir="in" pin="290,240" x="90" y="70"/>
