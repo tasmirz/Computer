@@ -109,6 +109,14 @@ Requires a Single line (As RISC)
 ### Video Controller
 
 ![vc.png](./assets/vc.png)
+
+## IO Address
+> 000 TTY
+> 001 7 Segment
+> 010 Display
+> 100 KeyBoard
+> 101 Immediate
+> 110 Joystick 
 ## Notes
 
 * The r0 has a fixed value : 0 , which is useful for implementing various high level features such as mov or jz. The r16 produces random value.
