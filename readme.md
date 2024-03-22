@@ -109,7 +109,10 @@ Requires a Single line (As RISC)
 ### Video Controller
 
 ![vc.png](./assets/vc.png)
+## Notes
 
+* The r0 has a fixed value : 0 , which is useful for implementing various high level features such as mov or jz. The r16 produces random value.
+* Incase of jumps the later 3 instructions must be replaced with nop
 ## References
  * https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
 * https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823
