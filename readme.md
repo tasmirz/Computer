@@ -9,7 +9,7 @@ Objectives and Achievements:
 - [ ] Design a compiler - *WIP*
 - [ ] Implementation of high level functionalities, such as push/pop, move, load 29 bits directly,jump if zero etc : depends on compiler
 - [ ] Design some sample programs for testing the CPU.
-- [ ] Preset of interrupt set stored in ROM.
+- [ ] Preset of interrupt set - stored in ROM.
 
 ![bdb9c626f21fa59e564483f9bcc5c6fc.png](./assets/bdb9c626f21fa59e564483f9bcc5c6fc.png)
 
@@ -39,10 +39,10 @@ Instructions are alike RISC instructions, requiring 1 CPU cycle to complete thei
 | Store             | store  rs1,rs2        |
 | Load (Immediate)  | load rd,ldaddr        |
 | Store (Immediate) | store stadaddr,rs2    |
-| In                | in rs1,rs2            |
-| Out               | out  rd,rs1           |
-| In (Immediate)    | in rs1,loaddr         |
-| Out (Immediate)   | out rd,staddr         |
+| In                | in rd,rs2             |
+| Out               | out rs2,rs1           |
+| In (Immediate)    | in rd,loaddr          |
+| Out (Immediate)   | out rs2,staddr        |
 
 
 ### Instructions (High Level)
