@@ -8,7 +8,7 @@ Objectives and Achievements:
 - [x] the CPU should support IO communication
 - [ ] Design a compiler - *WIP*
 - [ ] Implementation of high level functionalities, such as push/pop, move, load 29 bits directly,jump if zero etc : depends on compiler
-- [ ] Design some sample programs for testing the CPU.
+- [ ] Design some sample programs for testing the CPU(Snake Game)
 - [ ] Preset of interrupt set - stored in ROM.
 ![whole.png](./assets/whole.png)
 
@@ -45,6 +45,7 @@ Instructions are alike RISC instructions, requiring 1 CPU cycle to complete thei
 
 
 ### Instructions (High Level)
+
 ![instructions.png](./assets/instructions.png)
 
 #### First Stage : Fetch
@@ -77,6 +78,7 @@ Write back to register File. End of cycle.
 ### Control Unit
 
 Requires a Single line (As RISC)
+
 ![cu.png](./assets/cu.png)
 
 ### Register File
