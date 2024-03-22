@@ -12,6 +12,7 @@ Objectives and Achievements:
 - [ ] Preset of interrupt set stored in ROM.
 
 ![bdb9c626f21fa59e564483f9bcc5c6fc.png](./assets/bdb9c626f21fa59e564483f9bcc5c6fc.png)
+
 ## Instruction 
 Instructions are alike RISC instructions, requiring 1 CPU cycle to complete their execution. Each instruction is of fixed size :29 bits. Instruction generic format :
 
@@ -62,6 +63,52 @@ Read/Write to memory or IO, Save Results to Intermediate Registers (MEMWB)
 #### Fifth Stage 
 Write back to register File. End of cycle.
 
+## Circuits
+### Instruction Decoding
+![lines.png](./assets/lines.png)
+
+### Arithmetic and Logic Unit
+
+![alu.png](./assets/alu.png)
+
+### Branch Unit
+
+![bu.png](./assets/bu.png)
+
+### Control Unit
+
+Requires a Single line (As RISC)
+![cu.png](./assets/cu.png)
+
+### Register File
+
+![rf.png](./assets/rf.png)
+
+![rf2.png](./assets/rf2.png)
+
+![rff.png](./assets/rff.png)
+
+### Pipeline Registers
+
+#### IF|ID
+
+![ifid.png](./assets/ifid.png)
+
+### ID|EX
+
+![idex.png](./assets/idex.png)
+
+#### EX|MEM
+
+![exmem.png](./assets/exmem.png)
+
+### MEM|WB
+
+![memwb.png](./assets/memwb.png)
+
+### Video Controller
+
+![vc.png](./assets/vc.png)
 
 ## References
  * https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
