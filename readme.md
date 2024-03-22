@@ -10,8 +10,7 @@ Objectives and Achievements:
 - [ ] Implementation of high level functionalities, such as push/pop, move, load 29 bits directly,jump if zero etc : depends on compiler
 - [ ] Design some sample programs for testing the CPU.
 - [ ] Preset of interrupt set - stored in ROM.
-
-![bdb9c626f21fa59e564483f9bcc5c6fc.png](./assets/bdb9c626f21fa59e564483f9bcc5c6fc.png)
+![whole.png](./assets/whole.png)
 
 ## Instruction 
 Instructions are alike RISC instructions, requiring 1 CPU cycle to complete their execution. Each instruction is of fixed size :29 bits. Instruction generic format :
@@ -99,7 +98,6 @@ Requires a Single line (As RISC)
 ![idex.png](./assets/idex.png)
 
 #### EX|MEM
-
 ![exmem.png](./assets/exmem.png)
 
 ### MEM|WB
@@ -111,22 +109,22 @@ Requires a Single line (As RISC)
 ![vc.png](./assets/vc.png)
 
 ## IO Address
-> 000 TTY
-
-> 001 7 Segment
-
-> 010 Display
-
-> 100 KeyBoard
-
-> 101 Immediate
-
-> 110 Joystick 
+|Address|IO|
+|-|-|
+|000|TTY|
+|001| 7 Segment|
+|010| Display|
+|100| KeyBoard|
+|101| Immediate|
+|110| Joystick |
 
 ## Notes
 
 * The r0 has a fixed value : 0 , which is useful for implementing various high level features such as mov or jz. The r16 produces random value.
-* Incase of jumps the later 3 instructions must be replaced with nop
+* In case of jumps the later 3 instructions must be replaced with nop
+* Cache was not added as it'd require interrupt management system and slow down the computer
+* No register on WB - Memory (As memory already takes one clock extra), May need to add buffer on every IO
+* While debugging hard errors can be detected by checking current status (line status); most hard errors are delay related. In case of soft error / resource conflit, it must be resolved by the assembler (pause command in case of conflict, if placable place other instruction else place nop).
 ## References
 * https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
 * https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823
