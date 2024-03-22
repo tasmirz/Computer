@@ -114,7 +114,7 @@ Requires a Single line (As RISC)
 * The r0 has a fixed value : 0 , which is useful for implementing various high level features such as mov or jz. The r16 produces random value.
 * Incase of jumps the later 3 instructions must be replaced with nop
 ## References
- * https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
+* https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
 * https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823
 * https://en.wikipedia.org/wiki/Classic_RISC_pipeline
 * https://inst.eecs.berkeley.edu/~cs61c/resources/su18_lec/Lecture12.pdf
