@@ -45,8 +45,7 @@ Instructions are alike RISC instructions, requiring 1 CPU cycle to complete thei
 
 
 ### Instructions (High Level)
-
-### Pipelining
+![instructions.png](./assets/instructions.png)
 
 #### First Stage : Fetch
 Fetch from Program Memory -> Store to Intermediate Registers (IFID)
