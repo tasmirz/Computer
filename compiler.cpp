@@ -7,6 +7,7 @@ int main(int argc, char* argv[]) {
   ifstream source(argv[1]);
   ofstream compiled(argv[2]);
   /*
+  first find all labels
   expand complex instructions
   into assembly
   do not push labels

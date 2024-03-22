@@ -1,74 +1,78 @@
-# A Computer
+# Computer Project
 
-This computer is a
-* Harvard Architecture
-* RISC Instruction set followed
-* 5 Stage pipe-lined
-* 29 bit computer
-## Instruction Set
+Objectives and Achievements:
 
-|opcode|	instruction|		|	st/ld	exsc|		|im				out	io	st/ld	jmp|					loc		wr
-|0|	nop|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|1|	add|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|2|	sub|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|3|	mul|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|4|	mulh|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|5|	div|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|6|	rem|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|7|	not|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|8|	and|	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|9|	or |	0	0	0	0	1	0|		0	0	0	0	0	0|		0	0	0	0	0	1|
-|10|	xor|	0	0	0	0	1	0		0	0	0	0	0	0		0	0	0	0	0	1
-|11|	shl|	0	0	0	0	1	0		0	0	0	0	0	0		0	0	0	0	0	1
-|12|	shr|	0	0	0	0	1	0		0	0	0	0	0	0		0	0	0	0	0	1
-|13|	ror|	0	0	0	0	1	0		0	0	0	0	0	0		0	0	0	0	0	1
-|14|	rol|	0	0	0	0	1	0		0	0	0	0	0	0		0	0	0	0	0	1
-|15|	ashl|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|16|																					|
-|17|	add|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|18|	sub|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|19|	mul|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|20|	mulh|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|21|	div|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|22|	rem|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|23|	lui|	0	0	0	1	0	0		0	0	0	0	0	0		0	0	0	0	0	1
-|24|	and|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|25|	or|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|26|	xor|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|27|	shl|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|28|	shr|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|29|	ror|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|30|	rol|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|31|	ashl|	0	0	0	0	1	1		0	0	0	0	0	0		0	0	0	0	0	1
-|32|																					|
-|33|	bg|	0	0	0	0	0	0		0	0	0	0	0	1		0	0	0	0	0	0
-|34|	be|	0	0	0	0	0	0		0	0	0	0	0	1		0	0	0	0	0	0
-|35|	bge|	0	0	0	0	0	0		0	0	0	0	0	1		0	0	0	0	0	0
-|36|	bl|	0	0	0	0	0	0		0	0	0	0	0	1		0	0	0	0	0	0
-|37|	ne|	0	0	0	0	0	0		0	0	0	0	0	1		0	0	0	0	0	0
-|38|	ble|	0	0	0	0	0	0		0	0	0	0	0	1		0	0	0	0	0	0
-|39|	jal|								0	0	0	0	0	1		0	0	0	1	1	1
-|40|	load|																				
-|41|	load(adddr)|																				
-|42|	store|																				
-|43|	storei|																				
-|44|	in|																				
-|45|	out|																				
-|46|																					|
-|47|																					|
-|48|																					|																				
-|49|																					|
-|50|																					|
-|51|																					|
-|52|																					|
-|53|																					|
-|54|																					|
-|55|																					|
-|56|																					|
-|57|																					|
-|58|																					|
-|59|																					|
-|60|																					|
-|61|																					|
-|62|																					|
-|63|																					|
+- [x] The machine should follow RISC architecture.
+- [x] The machine should be pipe-lined.
+- [x] The machine should support Arithmetic,Load, Store, and JMP instructions similar to RISC-v model
+- [x] the CPU should support IO communication
+- [ ] Design a compiler - *WIP*
+- [ ] Implementation of high level functionalities, such as push/pop, move, load 29 bits directly,jump if zero etc : depends on compiler
+- [ ] Design some sample programs for testing the CPU.
+- [ ] Preset of interrupt set stored in ROM.
+
+![bdb9c626f21fa59e564483f9bcc5c6fc.png](./assets/bdb9c626f21fa59e564483f9bcc5c6fc.png)
+## Instruction 
+Instructions are alike RISC instructions, requiring 1 CPU cycle to complete their execution. Each instruction is of fixed size :29 bits. Instruction generic format :
+
+| Name                      | Size | Range      |
+|---------------------------|------|------------|
+| Opcodes                   | 6    | 0-5        |
+| Destination Register (rd) | 5    | 5-9        |
+| Register Select (rs1)     | 5    | 10-14      |
+| Register Select  (rs2)    | 5    | 15-19      |
+| Immediate                 | 14   | 15-28      |
+| Immediate UP              | 17   | 12-28      |
+| Load Address              | 16   | 13-28      |
+| Store Address             | 16   | 5-15,22-28 |
+| Jump Relative             | 13   | 5-9,20-28  |
+
+### Instruction formats
+| Type              | Format                |
+|-------------------|-----------------------|
+| ALU               | `op rd,rs1,rs2`       |
+| ALU Immediate     | `op rd,rs1,Immediate` |
+| Jump              | op rs1,rs2,Immediate  |
+| Jump linked       | op rd,Immediate       |
+| Load              | load rd,rs1           |
+| Store             | store  rs1,rs2        |
+| Load (Immediate)  | load rd,ldaddr        |
+| Store (Immediate) | store stadaddr,rs2    |
+| In                | in rs1,rs2            |
+| Out               | out  rd,rs1           |
+| In (Immediate)    | in rs1,loaddr         |
+| Out (Immediate)   | out rd,staddr         |
+
+
+### Instructions (High Level)
+
+### Pipelining
+
+#### First Stage : Fetch
+Fetch from Program Memory -> Store to Intermediate Registers (IFID)
+
+#### Second Stage : Register Read
+Save values of registers from Register file to Intermediate Registers (IFEX)
+
+#### Third Stage : Execution
+Perform ALU operation, Save Results to Intermediate Registers (EXMEM)
+
+#### Fourth Stage : Memory access
+Read/Write to memory or IO, Save Results to Intermediate Registers (MEMWB)
+
+#### Fifth Stage 
+Write back to register File. End of cycle.
+
+
+## References
+ * https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
+* https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823
+* https://en.wikipedia.org/wiki/Classic_RISC_pipeline
+* https://inst.eecs.berkeley.edu/~cs61c/resources/su18_lec/Lecture12.pdf
+* https://passlab.github.io/CSCE513/notes/lecture08_RISCV_Impl_pipeline.pdf
+* https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter/
+* https://courses.cs.washington.edu/courses/cse378/10sp/lectures/lec11.pdf
+* https://www.cs.fsu.edu/~zwang/files/cda3101/Fall2017/Lecture8_cda3101.pdf
+
+
+
