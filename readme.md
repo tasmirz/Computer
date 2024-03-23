@@ -10,6 +10,7 @@ Objectives and Achievements:
 - [ ] Implementation of high level functionalities, such as push/pop, move, load 29 bits directly,jump if zero etc : depends on compiler
 - [ ] Design some sample programs for testing the CPU(Snake Game)
 - [ ] Preset of interrupt set - stored in ROM.
+
 ![whole.png](./assets/whole.png)
 
 ## Instruction 
@@ -46,7 +47,9 @@ Instructions are alike RISC instructions, requiring 1 CPU cycle to complete thei
 
 ### Instructions (High Level)
 
+
 ![instructions.png](./assets/instructions.png)
+
 
 #### First Stage : Fetch
 Fetch from Program Memory -> Store to Intermediate Registers (IFID)
@@ -65,6 +68,7 @@ Write back to register File. End of cycle.
 
 ## Circuits
 ### Instruction Decoding
+
 ![lines.png](./assets/lines.png)
 
 ### Arithmetic and Logic Unit
@@ -127,7 +131,9 @@ Requires a Single line (As RISC)
 * Cache was not added as it'd require interrupt management system and slow down the computer
 * No register on WB - Memory (As memory already takes one clock extra), May need to add buffer on every IO
 * While debugging hard errors can be detected by checking current status (line status); most hard errors are delay related. In case of soft error / resource conflit, it must be resolved by the assembler (pause command in case of conflict, if placable place other instruction else place nop).
+
 ## References
+
 * https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
 * https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823
 * https://en.wikipedia.org/wiki/Classic_RISC_pipeline
