@@ -27,8 +27,8 @@
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#Soc" name="11"/>
   <lib desc="file#ALU/circuit/ALU.circ" name="12"/>
-  <lib desc="file#RegisterFile/circuit/RegisterFile.circ" name="13"/>
-  <lib desc="file#cache/circuit/cache.circ" name="14"/>
+  <lib desc="file#cache/circuit/cache.circ" name="13"/>
+  <lib desc="file#RegisterFile/circuit/RegisterFile.circ" name="14"/>
   <main name="main"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
@@ -1101,7 +1101,7 @@
       <a name="size" val="30"/>
     </comp>
     <comp lib="12" loc="(1460,660)" name="ALU"/>
-    <comp lib="13" loc="(1090,620)" name="RegisterFile"/>
+    <comp lib="14" loc="(1090,620)" name="RegisterFile"/>
     <comp lib="2" loc="(1330,570)" name="Multiplexer">
       <a name="selloc" val="tr"/>
       <a name="size" val="20"/>
