@@ -650,6 +650,11 @@
       <a name="labelfont" val="SansSerif plain 7"/>
       <a name="width" val="3"/>
     </comp>
+    <comp lib="0" loc="(2030,660)" name="Tunnel">
+      <a name="label" val="dmIn"/>
+      <a name="labelfont" val="SansSerif plain 7"/>
+      <a name="width" val="29"/>
+    </comp>
     <comp lib="0" loc="(2060,600)" name="Tunnel">
       <a name="label" val="ttyIn"/>
       <a name="labelfont" val="SansSerif plain 7"/>
@@ -982,6 +987,12 @@
       <a name="appearance" val="NewPins"/>
       <a name="radix" val="10unsigned"/>
     </comp>
+    <comp lib="0" loc="(660,190)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="dmIn"/>
+      <a name="labelfont" val="SansSerif plain 7"/>
+      <a name="width" val="29"/>
+    </comp>
     <comp lib="0" loc="(670,400)" name="Pin">
       <a name="appearance" val="classic"/>
     </comp>
@@ -1186,6 +1197,13 @@
       <a name="scale" val="8"/>
       <a name="width" val="16"/>
     </comp>
+    <comp lib="5" loc="(670,40)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="16"/>
+      <a name="matrixrows" val="16"/>
+      <a name="offcolor" val="#000000"/>
+      <a name="persist" val="16"/>
+    </comp>
     <comp loc="(100,330)" name="Seg7Controller"/>
     <comp loc="(100,40)" name="ttycontroller"/>
     <comp loc="(100,510)" name="PC"/>
@@ -1197,6 +1215,7 @@
     <comp loc="(410,200)" name="VideoController"/>
     <comp loc="(470,330)" name="joysplit"/>
     <comp loc="(660,630)" name="Parser"/>
+    <comp loc="(670,40)" name="dor_matrox_control"/>
     <comp loc="(980,500)" name="IFID"/>
     <wire from="(1020,500)" to="(1240,500)"/>
     <wire from="(1020,510)" to="(1240,510)"/>
@@ -4124,5 +4143,204 @@ e e 0 6 8 e 15*0 10
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="command_generator"/>
     <a name="simulationFrequency" val="1.0"/>
+  </circuit>
+  <circuit name="dor_matrox_control">
+    <a name="appearance" val="custom"/>
+    <a name="circuit" val="dor_matrox_control"/>
+    <a name="simulationFrequency" val="2048000.0"/>
+    <appear>
+      <rect fill="none" height="170" stroke="#000000" width="10" x="260" y="50"/>
+      <circ-anchor facing="east" x="270" y="60"/>
+      <circ-port dir="in" pin="130,240" x="260" y="210"/>
+      <circ-port dir="out" pin="290,100" x="270" y="70"/>
+      <circ-port dir="out" pin="290,120" x="270" y="90"/>
+      <circ-port dir="out" pin="290,140" x="270" y="110"/>
+      <circ-port dir="out" pin="290,160" x="270" y="130"/>
+      <circ-port dir="out" pin="290,180" x="270" y="150"/>
+      <circ-port dir="out" pin="290,200" x="270" y="170"/>
+      <circ-port dir="out" pin="290,220" x="270" y="190"/>
+      <circ-port dir="out" pin="290,240" x="270" y="210"/>
+      <circ-port dir="out" pin="350,110" x="270" y="80"/>
+      <circ-port dir="out" pin="350,130" x="270" y="100"/>
+      <circ-port dir="out" pin="350,150" x="270" y="120"/>
+      <circ-port dir="out" pin="350,170" x="270" y="140"/>
+      <circ-port dir="out" pin="350,190" x="270" y="160"/>
+      <circ-port dir="out" pin="350,210" x="270" y="180"/>
+      <circ-port dir="out" pin="350,230" x="270" y="200"/>
+      <circ-port dir="out" pin="350,90" x="270" y="60"/>
+    </appear>
+    <comp lib="0" loc="(130,240)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="29"/>
+    </comp>
+    <comp lib="0" loc="(130,240)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="bit0" val="2"/>
+      <a name="bit1" val="2"/>
+      <a name="bit10" val="2"/>
+      <a name="bit11" val="2"/>
+      <a name="bit12" val="2"/>
+      <a name="bit13" val="2"/>
+      <a name="bit14" val="2"/>
+      <a name="bit15" val="2"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="3"/>
+      <a name="bit26" val="3"/>
+      <a name="bit27" val="3"/>
+      <a name="bit28" val="3"/>
+      <a name="bit3" val="2"/>
+      <a name="bit4" val="2"/>
+      <a name="bit5" val="2"/>
+      <a name="bit6" val="2"/>
+      <a name="bit7" val="2"/>
+      <a name="bit8" val="2"/>
+      <a name="bit9" val="2"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="29"/>
+    </comp>
+    <comp lib="0" loc="(290,100)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(290,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(290,140)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(290,160)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(290,180)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(290,200)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(290,220)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(290,240)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,150)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,170)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,190)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,210)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(350,90)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="2" loc="(210,170)" name="Demultiplexer">
+      <a name="select" val="4"/>
+      <a name="width" val="16"/>
+    </comp>
+    <wire from="(150,240)" to="(210,240)"/>
+    <wire from="(150,250)" to="(230,250)"/>
+    <wire from="(210,170)" to="(210,240)"/>
+    <wire from="(250,100)" to="(290,100)"/>
+    <wire from="(250,110)" to="(350,110)"/>
+    <wire from="(250,120)" to="(290,120)"/>
+    <wire from="(250,130)" to="(350,130)"/>
+    <wire from="(250,140)" to="(290,140)"/>
+    <wire from="(250,150)" to="(350,150)"/>
+    <wire from="(250,160)" to="(290,160)"/>
+    <wire from="(250,170)" to="(350,170)"/>
+    <wire from="(250,180)" to="(290,180)"/>
+    <wire from="(250,190)" to="(350,190)"/>
+    <wire from="(250,200)" to="(290,200)"/>
+    <wire from="(250,210)" to="(350,210)"/>
+    <wire from="(250,220)" to="(290,220)"/>
+    <wire from="(250,230)" to="(350,230)"/>
+    <wire from="(250,240)" to="(290,240)"/>
+    <wire from="(250,90)" to="(350,90)"/>
   </circuit>
 </project>
