@@ -22,7 +22,7 @@ Instructions are alike RISC instructions, requiring 1 CPU cycle to complete thei
 | Destination Register (rd) | 5    | 5-9        |
 | Register Select (rs1)     | 5    | 10-14      |
 | Register Select  (rs2)    | 5    | 15-19      |
-| Immediate                 | 14   | 15-28      |
+| Immediate                 | 14   | 17-28      |
 | Immediate UP              | 17   | 12-28      |
 | Load Address              | 16   | 13-28      |
 | Store Address             | 16   | 5-15,22-28 |
