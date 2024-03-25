@@ -2,8 +2,9 @@
 ty 10
 ;---
 mov r9,9
-mov r10,ty
+a: mov r10,ty
+dec r9
 nop
 nop
 nop
-add r9,r10,r10
+bne r9,zero,a
