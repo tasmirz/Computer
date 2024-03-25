@@ -1,0 +1,348 @@
+#!/usr/bin/env node
+const { constants } = require('buffer');
+const fs = require('fs')
+
+function segments(source) {
+	var arr = source.split(';---');
+	if (arr.length != 3) throw "Check segments"
+	return {
+		constants: arr[0],
+		variables: arr[1],
+		code: arr[2],
+	}
+}
+function get_constants(source) {
+	var constants = new Map()
+	constants["zero"] = "r0"
+	constants["temp"] = "r1"
+	constants["sp"] = "r2"
+	constants["bp"] = "r3"
+	constants["random"] = "r16"
+	source = source.split('\n');
+	for (var i of source) {
+		i = i.replace(/\s|\t/g, '')
+		i = i.split(';')[0].split('=')
+		if (i.length == 2) constants[i[0]] = i[1]
+	}
+	return constants
+}
+function hex29(n) {
+	var ret = (n & 536870911).toString(16).padStart(8, "0")
+	return ret
+}
+function hexN(n, b) {
+	var ret = (n & ((1 << b) - 1)).toString(16).padStart((b + 3) / 4, "0")
+	return ret
+}
+// replace all constants beforehand
+function memory_preprocess(source) {
+	var vars = new Map()
+	source = source.split('\n');
+	var ret = []
+	for (var i of source) {
+		var li = i.search(`"`);
+		var ri = i.lastIndexOf(`"`);
+		if (li == -1) {
+			i = i.split(";")[0].trim().replace(/\s+/g, ' ').split(" ");
+			if (i.length < 2) continue;
+			vars[i[0]] = ret.length;
+			for (var j = 1; j < i.length; j++) {
+				if (i[j] == "dup") {
+					var q;
+					switch (i[j + 1][0]) {
+						case "b":
+							q = (hex29(parseInt(i[j + 1].slice(1), 2)))
+							break
+						case "h":
+							q = (hex29(parseInt(i[j + 1].slice(1), 16)))
+							break
+						default:
+							q = (hex29(parseInt(i[j + 1], 10)))
+
+					}
+					for (var k = 0; k < parseInt(i[j + 2]); k++) ret.push(q);
+					j += 2
+				} else {
+					switch (i[j][0]) {
+						case "b":
+							ret.push(hex29(parseInt(i[j].slice(1), 2)))
+							break
+						case "h":
+							ret.push(hex29(parseInt(i[j].slice(1), 16)))
+							break
+						default:
+							ret.push(hex29(parseInt(i[j], 10)))
+
+					}
+				}
+			}
+
+
+		} else {
+			var name = i.slice(0, li).trim()
+			var str = i.slice(li + 1, ri);
+			vars[name] = ret.length
+			for (var j = 0; j < str.length; j++) {
+				ret.push(hex29(str[j].charCodeAt(0)))
+			}
+		}
+	}
+	return {
+		names: vars,
+		memory: ret
+	};
+}
+function preprocess(source) {
+	var lines = []
+	var line = []
+	var temp = ""
+	source += "\n"
+	var lock = false;
+	for (var i = 0; i < source.length; i++) {
+		var c = source[i]
+		if (!lock)
+			switch (c) {
+				case ';':
+					lock = true;
+				case '\n':
+					if (temp.length) line.push(temp)
+					temp = ""
+					if (line.length) lines.push(line)
+					line = []
+					break
+				case ' ':
+				case ',':
+					if (temp.length) line.push(temp)
+					temp = ""
+					break
+				case '\t':
+					break
+				default:
+					temp += c;
+					break
+			}
+		if (c == '\n') lock = false;
+	}
+	return lines;
+}
+var opcodes = new Map();
+opcodes["nop"] = 0, opcodes["add"] = 1, opcodes["sub"] = 2, opcodes["mul"] = 3, opcodes["mulh"] = 4,
+	opcodes["div"] = 5, opcodes["rem"] = 6, opcodes["not"] = 7, opcodes["and"] = 8, opcodes["or"] = 9,
+	opcodes["xor"] = 10, opcodes["shl"] = 11, opcodes["shr"] = 12, opcodes["ror"] = 13, opcodes["rol"] = 14,
+	opcodes["ashl"] = 15, opcodes["addi"] = 17, opcodes["subi"] = 18, opcodes["muli"] = 19,
+	opcodes["mulhi"] = 20, opcodes["divi"] = 21, opcodes["remi"] = 22, opcodes["lui"] = 23,
+	opcodes["andi"] = 24, opcodes["ori"] = 25, opcodes["xori"] = 26, opcodes["shli"] = 27,
+	opcodes["shri"] = 28, opcodes["rori"] = 29, opcodes["roli"] = 30, opcodes["ashli"] = 31,
+	opcodes["jr"] = 32, opcodes["bg"] = 33, opcodes["be"] = 34, opcodes["bge"] = 35,
+	opcodes["bl"] = 36, opcodes["bne"] = 37, opcodes["ble"] = 38, opcodes["jal"] = 39,
+	opcodes["load"] = 40, opcodes["loadi"] = 41, opcodes["store"] = 42,
+	opcodes["storei"] = 43, opcodes["in"] = 44, opcodes["ini"] = 45,
+	opcodes["out"] = 46, opcodes["outi"] = 47, opcodes["hlt"] = 63
+var operands = new Map();
+operands["nop"] = [], operands["add"] = ["rd", "rs1", "rs2"], operands["sub"] = ["rd", "rs1", "rs2"],
+	operands["mul"] = ["rd", "rs1", "rs2"], operands["mulh"] = ["rd", "rs1", "rs2"], operands["div"] = ["rd", "rs1", "rs2"],
+	operands["rem"] = ["rd", "rs1", "rs2"], operands["not"] = ["rd", "rs1", "rs2"], operands["and"] = ["rd", "rs1", "rs2"],
+	operands["or"] = ["rd", "rs1", "rs2"], operands["xor"] = ["rd", "rs1", "rs2"], operands["shl"] = ["rd", "rs1", "rs2"],
+	operands["shr"] = ["rd", "rs1", "rs2"], operands["ror"] = ["rd", "rs1", "rs2"], operands["rol"] = ["rd", "rs1", "rs2"],
+	operands["ashl"] = ["rd", "rs1", "rs2"], operands["addi"] = ["rd", "rs1", "im"], operands["subi"] = ["rd", "rs1", "im"],
+	operands["muli"] = ["rd", "rs1", "im"], operands["mulhi"] = ["rd", "rs1", "im"], operands["divi"] = ["rd", "rs1", "im"],
+	operands["remi"] = ["rd", "rs1", "im"], operands["lui"] = ["rd", "imu"], operands["andi"] = ["rd", "rs1", "im"],
+	operands["ori"] = ["rd", "rs1", "im"], operands["xori"] = ["rd", "rs1", "im"],
+	operands["shli"] = ["rd", "rs1", "im"], operands["shri"] = ["rd", "rs1", "im"], operands["rori"] = ["rd", "rs1", "im"],
+	operands["roli"] = ["rd", "rs1", "im"], operands["ashli"] = ["rd", "rs1", "im"], operands["jr"] = ["rd", "rs1"],
+	operands["bg"] = ["rs1", "rs2", "jr"], operands["be"] = ["rs1", "rs2", "jr"], operands["bge"] = ["rs1", "rs2", "jr"],
+	operands["bl"] = ["rs1", "rs2", "jr"], operands["bne"] = ["rs1", "rs2", "jr"], operands["ble"] = ["rs1", "rs2", "jr"],
+	operands["jal"] = ["rd", "rs1"], operands["load"] = ["rd", "rs1"], operands["loadi"] = ["rd", "ld"], operands["store"] = ["rs1", "rs2"],
+	operands["storei"] = ["st", "rs2"], operands["in"] = ["rd", "rs2"], operands["ini"] = ["rd", "ld"], operands["out"] = ["rs2", "rs1"],
+	operands["outi"] = ["ld", "rs2"], operands["hlt"] = []
+function parseNumber(n) {
+	switch (n[0]) {
+		case "b": return parseInt(n.slice(1), 2)
+		case "h": return parseInt(n.slice(1), 16)
+		default: return parseInt(n, 10)
+	}
+}
+function machine(line) {
+	//          op,rd,rs1,rs2,st,ld,im,imu,jr
+	var list = {
+		opcode: 0,
+		rd: 0,
+		rs1: 0,
+		rs2: 0,
+		st: 0,
+		ld: 0,
+		im: 0,
+		imu: 0,
+		jr: 0
+	} //policy if 0 don't include
+	var cooked = 0;
+	var specs = {
+		opcode: [[0, 6]], //opcode
+		rd: [[6, 5]], //rd
+		rs1: [[11, 5]], //rs1
+		rs2: [[16, 5]], //rs2
+		st: [[6, 10], [23, 6]], //st
+		ld: [[13, 16]],//ld
+		im: [[17, 12]], //im
+		imu: [[12, 17]], //imu
+		jr: [[6, 5], [21, 8]]//jr
+	}
+	list.opcode = opcodes[line[0]]
+	var ops = operands[line[0]]
+
+	line.shift();
+	for (var i in ops) {
+
+		if (line[i][0] == "r") list[ops[i]] = parseInt(line[i].slice(1))
+		else list[ops[i]] = parseInt(line[i])
+	}
+
+
+	for (var i in specs) {
+		var t = list[i]
+		if (t) for (var j of specs[i]) {
+			cooked |= (((1 << j[1]) - 1) & t) << j[0]
+			t >>= j[1]
+		}
+	}
+	//this.cooked|=ops&(1<<this.specs.opcodes[2]-1)
+
+	return hex29(cooked)
+}
+function resolve(constants, variables, data) {
+	if (data[0] == "'") return data.charCodeAt(1).toString()
+	if (constants[data] != undefined) {
+		if (variables[data] != undefined) {
+			return "#" + variables[constants[data]].toString()
+		} else {
+			return constants[data];
+		}
+	} else if (variables[data] != undefined) {
+		return "#" + variables[data].toString()
+	} else {
+		return data;
+	}
+}
+function specify(constants, variables, line) {
+	for (var i in line) {
+		line[i] = resolve(constants, variables, line[i])
+	}
+	return line
+}
+function expand(constants, variables, lines) { //do before push and also recognize
+	var ret = []
+	var labels = new Map()
+	for (var line of lines) {
+		line = specify(constants, variables, line)
+
+		if (line[0][line[0].length - 1] == ":") { //label
+			if (line.length == 1 && (line[0] == "hlt" || line[0] == "nop")) continue;
+			else {
+				labels[line[0].slice(0, -1)] = ret.length;
+				line.shift();
+				if (!line.length) continue
+			}
+		}
+		if (line[0] == "mov") {
+			if (line[1][0] == "r") {
+				if (line[2][0] == "r") {
+					ret.push(["add", line[1], "r0", line[2]])
+				} else if (line[2][0] == "#") {
+					ret.push(["loadi", line[1], line[2].slice(1)])
+				} else {
+					var number = parseNumber(line[2]);
+					ret.push(["lui", line[1], 0b111111111111111111111000000000000 & 1])
+					ret.push(["addi", line[1], "r0", 0b111111111111 & number])
+				}
+			} else if (line[1][0] == "#") {
+				ret.push(["storei", line[1].slice(1), line[2]]);
+			}
+			continue
+		}
+		if (line[0] == "inc") {
+			ret.push(["addi", line[1], line[1], "1"])
+			continue
+		}
+		if (line[0] == "dec") {
+			ret.push(["subi", line[1], line[1], "1"])
+			continue
+		}
+		if (line[0] == "lea") {
+			var number = parseNumber(line[2].slice(1));
+			ret.push(["lui", line[1], 0b111111111111111111111000000000000 & number])
+			ret.push(["addi", line[1], "r0", 0b111111111111 & number])
+			continue
+		}
+		if (line[0] == "push") {
+			ret.push(["subi", "r2", "zero", "1"])
+			ret.push(["store", "r2", line[1]])
+			continue
+		}
+
+		if (line[0] == "pop") {
+			ret.push(["load", line[1]], "r2")
+			ret.push(["addi", "r2", "zero", "1"])
+			continue
+		}
+
+		if (line[0] == "call") {
+			ret.push(["subi", "r2", "zero", "1"])
+			ret.push(["store", "r2", "r3"])
+			ret.push(["j", line[1]])
+			continue
+		}
+		if (line[0] == "ret") {
+			ret.push(["j", "r2"])
+			ret.push(["load", line[1], "r2"])
+			ret.push(["addi", "r2", "zero", "1"])
+			continue
+		}
+		if (opcodes[line[0]] < 17 && opcodes[line[0]] > 0) {
+			if (line[2][0] != "r") line[0] += "i"
+			ret.push(line)
+			continue
+		}
+		ret.push(line);
+		//else others
+	}
+	for (var i = 0; i < ret.length; i++) {
+		line = ret[i];
+		if (opcodes[line[0]] > 31 && opcodes[line[0]] < 41)
+			if (opcodes[line[0]] == 32 || opcodes[line[0]] == 40)
+				line[2] = labels[line[2]];
+			else line[3] = (parseInt(labels[line[3]]) - i).toString();
+	}
+	return ret
+
+}
+function output(constants, variables, source) {
+	var instructions = expand(constants, variables, preprocess(source))
+	console.log(instructions)
+	var ret = ""
+	for (var i of instructions) {
+		ret += machine(i) + " ";
+	}
+	return ret;
+}
+
+function mem(din) {
+	var str = ""
+	for (var i of din) str += i + " "
+	return str
+}
+
+function main() {
+	if (process.argv.length != 3) console.error("usage: ./translate file.asm"), process.exit(0)
+	try {
+		var { constants, variables, code } = segments(fs.readFileSync(process.argv[2], 'utf-8'))
+		constants = get_constants(constants)
+		variables = memory_preprocess(variables)
+		var program = output(constants, variables.names, code);
+		fs.writeFileSync(process.argv[2].split('.')[0] + ".rom", "v3.0 hex words plain\n" + program, { flag: 'w+' })
+		fs.writeFileSync(process.argv[2].split('.')[0] + ".ram", "v3.0 hex words plain\n" + mem(variables.memory), { flag: 'w+' })
+	} catch (e) {
+		throw e;
+	}
+}
+
+main();
