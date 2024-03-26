@@ -35,7 +35,8 @@ The details on the hardware design can be found [here](./design.md). Learn about
 * While debugging hard errors can be detected by checking current status (line status); most hard errors are delay related. In case of soft error / resource conflict, it must be resolved by the assembler (pause command in case of conflict, if placable place other instruction else place nop).
 
 ## References
-
+* [Wikipedia - RISC-V](https://en.wikipedia.org/wiki/RISC-V)
+* [The RISC-V Instruction Set Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf)
 * [Stack Overflow - How to implement CISC Pipeline](https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right)
 * [ResearchGate - RISC-V](https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823)
 * [Wikipedia - Clasic RISC Pipeline](https://en.wikipedia.org/wiki/Classic_RISC_pipeline)
