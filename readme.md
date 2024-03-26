@@ -21,8 +21,7 @@ Open the [CPU.circ](CPU.circ) file in [Logisim Evolution](https://github.com/log
 ```bash
 ./translate file.asm
 ```
-<br>
-<br>
+
 The details on the hardware design can be found [here](./design.md). Learn about the [Compiler Design](./compiler.md)
 <br>
 <br>
