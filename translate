@@ -332,14 +332,17 @@ function mem(din) {
 }
 
 function main() {
+	if (!fs.existsSync("compiled")) {
+		fs.mkdirSync("compiled");
+	}
 	if (process.argv.length != 3) console.error("usage: ./translate file.asm"), process.exit(0)
 	try {
 		var { constants, variables, code } = segments(fs.readFileSync(process.argv[2], 'utf-8'))
 		constants = get_constants(constants)
 		variables = memory_preprocess(variables)
 		var program = output(constants, variables.names, code);
-		fs.writeFileSync(process.argv[2].split('.')[0] + ".rom", "v3.0 hex words plain\n" + program, { flag: 'w+' })
-		fs.writeFileSync(process.argv[2].split('.')[0] + ".ram", "v3.0 hex words plain\n" + mem(variables.memory), { flag: 'w+' })
+		fs.writeFileSync("compiled/" + process.argv[2].split('.')[0] + ".rom", "v3.0 hex words plain\n" + program, { flag: 'w+' })
+		fs.writeFileSync("compiled" + process.argv[2].split('.')[0] + ".ram", "v3.0 hex words plain\n" + mem(variables.memory), { flag: 'w+' })
 	} catch (e) {
 		throw e;
 	}

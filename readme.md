@@ -1,128 +1,29 @@
-# Computer Project
+# Computer emulation in Logisim Evolution
 
-Objectives and Achievements:
+Hello There!
+It's a repository showcasing my CSE2114 (Computer Architecture Sessional) project. The task was to build a 29 bit computer with at least 4 instructions. As it was an open ended project I added some extra objectives.
+<figure>
+<img src="./assets/whole.png">
+<caption> The computer designed in Logisim Evolution</caption>
+</figure>
 
-- [x] The machine should follow RISC architecture.
-- [x] The machine should be pipe-lined.
-- [x] The machine should support Arithmetic,Load, Store, and JMP instructions similar to RISC-v model
-- [x] the CPU should support IO communication
-- [ ] Design a compiler - *WIP*
-- [ ] Implementation of high level functionalities, such as push/pop, move, load 29 bits directly,jump if zero etc : depends on compiler
-- [ ] Design some sample programs for testing the CPU(Snake Game)
-- [ ] Preset of interrupt set - stored in ROM.
+## Objectives
 
-![whole.png](./assets/whole.png)
+- [x] Building a computer with instruction set similar to **RISC-V** , in **Harvard architecture**
+- [x] Make the computer five stage **pipelined** 
+- [x] The computer should support **IO** device interfacing
+- [x] Design A **compiler**, the compiler should provide higher level functionalities such as push/pop,mov etc.
+- [ ] Code a snake game
+- [ ] Design preset **bootloader** and **interrupt** set
 
-## Instruction 
-Instructions are alike RISC instructions, requiring 1 CPU cycle to complete their execution. Each instruction is of fixed size :29 bits. Instruction generic format :
-
-| Name                      | Size | Range      |
-|---------------------------|------|------------|
-| Opcodes                   | 6    | 0-5        |
-| Destination Register (rd) | 5    | 5-9        |
-| Register Select (rs1)     | 5    | 10-14      |
-| Register Select  (rs2)    | 5    | 15-19      |
-| Immediate                 | 14   | 17-28      |
-| Immediate UP              | 17   | 12-28      |
-| Load Address              | 16   | 13-28      |
-| Store Address             | 16   | 5-15,22-28 |
-| Jump Relative             | 13   | 5-9,20-28  |
-
-### Instruction formats
-| Type              | Format                |
-|-------------------|-----------------------|
-| ALU               | `op rd,rs1,rs2`       |
-| ALU Immediate     | `op rd,rs1,Immediate` |
-| Jump              | op rs1,rs2,Immediate  |
-| Jump linked       | op rd,Immediate       |
-| Load              | load rd,rs1           |
-| Store             | store  rs1,rs2        |
-| Load (Immediate)  | load rd,ldaddr        |
-| Store (Immediate) | store stadaddr,rs2    |
-| In                | in rd,rs2             |
-| Out               | out rs2,rs1           |
-| In (Immediate)    | in rd,loaddr          |
-| Out (Immediate)   | out rs2,staddr        |
+## The Project
+Open the [CPU.circ](CPU.circ) file in [Logisim Evolution](https://github.com/logisim-evolution/logisim-evolution). Write assembly codes following the [Assembly Manual](assembly.md) and compile/assemble using the compiler (Requires [NodeJS](https://nodejs.org/en)). 
+```bash
+./translate file.asm
+```
+The details on the hardware design can be found [here](design.md). Learn about the [Compiler Design](compiler.md)
 
 
-### Instructions (High Level)
-
-
-![instructions.png](./assets/instructions.png)
-
-
-#### First Stage : Fetch
-Fetch from Program Memory -> Store to Intermediate Registers (IFID)
-
-#### Second Stage : Register Read
-Save values of registers from Register file to Intermediate Registers (IFEX)
-
-#### Third Stage : Execution
-Perform ALU operation, Save Results to Intermediate Registers (EXMEM)
-
-#### Fourth Stage : Memory access
-Read/Write to memory or IO, Save Results to Intermediate Registers (MEMWB)
-
-#### Fifth Stage 
-Write back to register File. End of cycle.
-
-## Circuits
-### Instruction Decoding
-
-![lines.png](./assets/lines.png)
-
-### Arithmetic and Logic Unit
-
-![alu.png](./assets/alu.png)
-
-### Branch Unit
-
-![bu.png](./assets/bu.png)
-
-### Control Unit
-
-Requires a Single line (As RISC)
-
-![cu.png](./assets/cu.png)
-
-### Register File
-
-![rf.png](./assets/rf.png)
-
-![rf2.png](./assets/rf2.png)
-
-![rff.png](./assets/rff.png)
-
-### Pipeline Registers
-
-#### IF|ID
-
-![ifid.png](./assets/ifid.png)
-
-### ID|EX
-
-![idex.png](./assets/idex.png)
-
-#### EX|MEM
-![exmem.png](./assets/exmem.png)
-
-### MEM|WB
-
-![memwb.png](./assets/memwb.png)
-
-### Video Controller
-
-![vc.png](./assets/vc.png)
-
-## IO Address
-|Address|IO|
-|-|-|
-|000|TTY|
-|001| 7 Segment|
-|010| Display|
-|100| KeyBoard|
-|101| Immediate|
-|110| Joystick |
 
 ## Notes
 
@@ -130,18 +31,18 @@ Requires a Single line (As RISC)
 * In case of jumps the later 3 instructions must be replaced with nop
 * Cache was not added as it'd require interrupt management system and slow down the computer
 * No register on WB - Memory (As memory already takes one clock extra), May need to add buffer on every IO
-* While debugging hard errors can be detected by checking current status (line status); most hard errors are delay related. In case of soft error / resource conflit, it must be resolved by the assembler (pause command in case of conflict, if placable place other instruction else place nop).
+* While debugging hard errors can be detected by checking current status (line status); most hard errors are delay related. In case of soft error / resource conflict, it must be resolved by the assembler (pause command in case of conflict, if placable place other instruction else place nop).
 
 ## References
 
-* https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right
-* https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823
-* https://en.wikipedia.org/wiki/Classic_RISC_pipeline
-* https://inst.eecs.berkeley.edu/~cs61c/resources/su18_lec/Lecture12.pdf
-* https://passlab.github.io/CSCE513/notes/lecture08_RISCV_Impl_pipeline.pdf
-* https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter/
-* https://courses.cs.washington.edu/courses/cse378/10sp/lectures/lec11.pdf
-* https://www.cs.fsu.edu/~zwang/files/cda3101/Fall2017/Lecture8_cda3101.pdf
-
+* [Stack Overflow - How to implement CISC Pipeline](https://stackoverflow.com/questions/55454314/how-to-implement-cisc-pipelined-cpu-right)
+* [ResearchGate - RISC-V](https://www.researchgate.net/figure/Block-diagram-of-RISCV-SoC-and-its-five-stage-RISC-V-processor-Resources-from-different_fig3_363175823)
+* [Wikipedia - Clasic RISC Pipeline](https://en.wikipedia.org/wiki/Classic_RISC_pipeline)
+* [Berkeley - RISC-V CPU Control, Pipelining](https://inst.eecs.berkeley.edu/~cs61c/resources/su18_lec/Lecture12.pdf)
+* [RISC-V Pipeline
+Implementation](https://passlab.github.io/CSCE513/notes/lecture08_RISCV_Impl_pipeline.pdf)
+* [Cornell - RISC-V Interpreter](https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter/)
+* [Washington - Pipelining](https://courses.cs.washington.edu/courses/cse378/10sp/lectures/lec11.pdf)
+* [FSU - Pipelined Datapath](https://www.cs.fsu.edu/~zwang/files/cda3101/Fall2017/Lecture8_cda3101.pdf)
 
 
