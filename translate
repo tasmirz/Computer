@@ -351,3 +351,11 @@ function main() {
 }
 
 main();
+
+/*
+Todo , move label/ current address to reg
+simple
+mov get and put value to reg
+
+out ->outi auto
+*/

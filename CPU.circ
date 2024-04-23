@@ -65,7 +65,7 @@
   <circuit name="main">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="main"/>
-    <a name="simulationFrequency" val="1.0"/>
+    <a name="simulationFrequency" val="2048000.0"/>
     <comp lib="0" loc="(100,230)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="mcl"/>
@@ -591,6 +591,11 @@
       <a name="labelfont" val="SansSerif plain 7"/>
       <a name="width" val="29"/>
     </comp>
+    <comp lib="0" loc="(1930,750)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="kin"/>
+      <a name="labelfont" val="SansSerif plain 7"/>
+    </comp>
     <comp lib="0" loc="(1940,510)" name="Splitter">
       <a name="appear" val="center"/>
       <a name="bit0" val="none"/>
@@ -611,11 +616,6 @@
     <comp lib="0" loc="(1950,590)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="label" val="selio"/>
-      <a name="labelfont" val="SansSerif plain 7"/>
-    </comp>
-    <comp lib="0" loc="(1950,750)" name="Tunnel">
-      <a name="facing" val="north"/>
-      <a name="label" val="kin"/>
       <a name="labelfont" val="SansSerif plain 7"/>
     </comp>
     <comp lib="0" loc="(1980,640)" name="Tunnel">
@@ -1182,7 +1182,7 @@
       <a name="addrWidth" val="10"/>
       <a name="appearance" val="classic"/>
       <a name="contents">addr/data: 10 29
-60ed
+60ed 4*0 3002f 27
 </a>
       <a name="dataWidth" val="29"/>
       <a name="labelvisible" val="true"/>
@@ -1312,7 +1312,6 @@
     <wire from="(1920,640)" to="(1930,640)"/>
     <wire from="(1930,730)" to="(1930,750)"/>
     <wire from="(1950,590)" to="(2000,590)"/>
-    <wire from="(1950,730)" to="(1950,750)"/>
     <wire from="(1980,640)" to="(1990,640)"/>
     <wire from="(200,500)" to="(200,520)"/>
     <wire from="(200,500)" to="(980,500)"/>
