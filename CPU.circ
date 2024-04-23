@@ -26,9 +26,9 @@
   <lib desc="#BFH-Praktika" name="9"/>
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#Soc" name="11"/>
-  <lib desc="file#Subcircuits/cache/circuit/cache.circ" name="12"/>
-  <lib desc="file#Subcircuits/RegisterFile/circuit/RegisterFile.circ" name="13"/>
-  <lib desc="file#Subcircuits/ALU/circuit/ALU.circ" name="14"/>
+  <lib desc="file#Subcircuits/ALU/circuit/ALU.circ" name="12"/>
+  <lib desc="file#Subcircuits/cache/circuit/cache.circ" name="13"/>
+  <lib desc="file#Subcircuits/RegisterFile/circuit/RegisterFile.circ" name="14"/>
   <main name="main"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
@@ -1120,8 +1120,8 @@
       <a name="negate1" val="true"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="13" loc="(1090,620)" name="RegisterFile"/>
-    <comp lib="14" loc="(1460,660)" name="ALU"/>
+    <comp lib="12" loc="(1460,660)" name="ALU"/>
+    <comp lib="14" loc="(1090,620)" name="RegisterFile"/>
     <comp lib="2" loc="(1330,570)" name="Multiplexer">
       <a name="selloc" val="tr"/>
       <a name="size" val="20"/>
@@ -1182,8 +1182,7 @@
       <a name="addrWidth" val="10"/>
       <a name="appearance" val="classic"/>
       <a name="contents">addr/data: 10 29
-257 120251 0 0 2a9 24a52 9002b 0
-0 0 1fe04ea5
+60ed
 </a>
       <a name="dataWidth" val="29"/>
       <a name="labelvisible" val="true"/>
@@ -3210,12 +3209,23 @@ e e 0 6 8 e 15*0 10
       <a name="label" val="clk"/>
       <a name="labelfont" val="SansSerif plain 7"/>
     </comp>
+    <comp lib="0" loc="(600,370)" name="Constant"/>
+    <comp lib="0" loc="(600,390)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="clk"/>
+      <a name="labelfont" val="SansSerif plain 7"/>
+    </comp>
     <comp lib="0" loc="(620,140)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="label" val="rst"/>
       <a name="labelfont" val="SansSerif plain 7"/>
     </comp>
     <comp lib="0" loc="(620,540)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="rst"/>
+      <a name="labelfont" val="SansSerif plain 7"/>
+    </comp>
+    <comp lib="0" loc="(630,410)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="label" val="rst"/>
       <a name="labelfont" val="SansSerif plain 7"/>
@@ -3275,6 +3285,10 @@ e e 0 6 8 e 15*0 10
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="29"/>
     </comp>
+    <comp lib="4" loc="(600,320)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="29"/>
+    </comp>
     <comp loc="(230,220)" name="Parser"/>
     <wire from="(120,40)" to="(130,40)"/>
     <wire from="(130,220)" to="(140,220)"/>
@@ -3289,9 +3303,10 @@ e e 0 6 8 e 15*0 10
     <wire from="(520,480)" to="(590,480)"/>
     <wire from="(570,210)" to="(750,210)"/>
     <wire from="(570,80)" to="(590,80)"/>
-    <wire from="(580,350)" to="(760,350)"/>
+    <wire from="(580,350)" to="(600,350)"/>
     <wire from="(650,480)" to="(690,480)"/>
     <wire from="(650,80)" to="(860,80)"/>
+    <wire from="(660,350)" to="(760,350)"/>
     <wire from="(70,270)" to="(90,270)"/>
     <wire from="(70,300)" to="(90,300)"/>
     <wire from="(730,480)" to="(770,480)"/>
@@ -4356,5 +4371,34 @@ e e 0 6 8 e 15*0 10
     <wire from="(250,230)" to="(350,230)"/>
     <wire from="(250,240)" to="(290,240)"/>
     <wire from="(250,90)" to="(350,90)"/>
+  </circuit>
+  <circuit name="D">
+    <a name="appearance" val="custom"/>
+    <a name="circuit" val="D"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <appear>
+      <rect fill="none" height="9" stroke="#000000" width="12" x="50" y="56"/>
+      <circ-anchor facing="east" x="60" y="60"/>
+      <circ-port dir="in" pin="140,150" x="50" y="60"/>
+      <circ-port dir="out" pin="200,150" x="60" y="60"/>
+    </appear>
+    <comp lib="0" loc="(140,150)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="29"/>
+    </comp>
+    <comp lib="0" loc="(140,170)" name="Constant"/>
+    <comp lib="0" loc="(140,190)" name="Clock"/>
+    <comp lib="0" loc="(200,150)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="29"/>
+    </comp>
+    <comp lib="4" loc="(140,120)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="29"/>
+    </comp>
   </circuit>
 </project>

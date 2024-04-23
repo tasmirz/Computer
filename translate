@@ -342,7 +342,7 @@ function main() {
 		variables = memory_preprocess(variables)
 		var program = output(constants, variables.names, code);
 		fs.writeFileSync("compiled/" + process.argv[2].split('.')[0] + ".rom", "v3.0 hex words plain\n" + program, { flag: 'w+' })
-		fs.writeFileSync("compiled" + process.argv[2].split('.')[0] + ".ram", "v3.0 hex words plain\n" + mem(variables.memory), { flag: 'w+' })
+		fs.writeFileSync("compiled/" + process.argv[2].split('.')[0] + ".ram", "v3.0 hex words plain\n" + mem(variables.memory), { flag: 'w+' })
 	} catch (e) {
 		throw e;
 	}
