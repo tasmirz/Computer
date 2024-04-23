@@ -976,25 +976,25 @@
       <a name="appearance" val="NewPins"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(630,750)" name="Probe">
+    <comp lib="0" loc="(620,750)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(630,780)" name="Probe">
+    <comp lib="0" loc="(620,780)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="radix" val="10unsigned"/>
     </comp>
-    <comp lib="0" loc="(630,810)" name="Probe">
+    <comp lib="0" loc="(620,810)" name="Probe">
+      <a name="appearance" val="NewPins"/>
+      <a name="radix" val="10unsigned"/>
+    </comp>
+    <comp lib="0" loc="(630,720)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="radix" val="10unsigned"/>
     </comp>
     <comp lib="0" loc="(640,630)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="radix" val="16"/>
-    </comp>
-    <comp lib="0" loc="(640,720)" name="Probe">
-      <a name="appearance" val="NewPins"/>
-      <a name="radix" val="10unsigned"/>
     </comp>
     <comp lib="0" loc="(660,190)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -1358,11 +1358,11 @@
     <wire from="(500,180)" to="(500,200)"/>
     <wire from="(500,590)" to="(660,590)"/>
     <wire from="(620,690)" to="(670,690)"/>
-    <wire from="(630,750)" to="(690,750)"/>
-    <wire from="(630,780)" to="(710,780)"/>
-    <wire from="(630,810)" to="(730,810)"/>
+    <wire from="(620,750)" to="(690,750)"/>
+    <wire from="(620,780)" to="(710,780)"/>
+    <wire from="(620,810)" to="(730,810)"/>
+    <wire from="(630,720)" to="(670,720)"/>
     <wire from="(640,630)" to="(660,630)"/>
-    <wire from="(640,720)" to="(670,720)"/>
     <wire from="(660,590)" to="(660,630)"/>
     <wire from="(660,590)" to="(980,590)"/>
     <wire from="(670,710)" to="(670,720)"/>

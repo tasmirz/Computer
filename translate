@@ -152,7 +152,7 @@ operands["nop"] = [], operands["add"] = ["rd", "rs1", "rs2"], operands["sub"] = 
 	operands["roli"] = ["rd", "rs1", "im"], operands["ashli"] = ["rd", "rs1", "im"], operands["jr"] = ["rd", "rs1"],
 	operands["bg"] = ["rs1", "rs2", "jr"], operands["be"] = ["rs1", "rs2", "jr"], operands["bge"] = ["rs1", "rs2", "jr"],
 	operands["bl"] = ["rs1", "rs2", "jr"], operands["bne"] = ["rs1", "rs2", "jr"], operands["ble"] = ["rs1", "rs2", "jr"],
-	operands["jal"] = ["rd", "rs1"], operands["load"] = ["rd", "rs1"], operands["loadi"] = ["rd", "ld"], operands["store"] = ["rs1", "rs2"],
+	operands["jal"] = ["rd", "ld"], operands["load"] = ["rd", "rs1"], operands["loadi"] = ["rd", "ld"], operands["store"] = ["rs1", "rs2"],
 	operands["storei"] = ["st", "rs2"], operands["in"] = ["rd", "rs2"], operands["ini"] = ["rd", "ld"], operands["out"] = ["rs2", "rs1"],
 	operands["outi"] = ["ld", "rs2"], operands["hlt"] = []
 function parseNumber(n) {
@@ -307,10 +307,12 @@ function expand(constants, variables, lines) { //do before push and also recogni
 	}
 	for (var i = 0; i < ret.length; i++) {
 		line = ret[i];
-		if (opcodes[line[0]] > 31 && opcodes[line[0]] < 41)
-			if (opcodes[line[0]] == 32 || opcodes[line[0]] == 40)
+		if (opcodes[line[0]] > 31 && opcodes[line[0]] < 40)
+			if (opcodes[line[0]] == 32)
 				line[2] = labels[line[2]];
-			else line[3] = (parseInt(labels[line[3]]) - i).toString();
+		if (opcodes[line[0]] == 39)
+			line[2] = labels[line[1]];
+		else line[3] = (parseInt(labels[line[3]]) - i).toString();
 	}
 	return ret
 
