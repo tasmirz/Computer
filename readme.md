@@ -4,11 +4,15 @@
 <img src="./assets/output.gif">
 <caption> An early stage program showcasing Output</caption>
 </figure>
-
+<br>
+<br>
 <figure>
 <img src="./assets/io.gif">
 <caption> I/O Operation</caption>
 </figure>
+<br>
+<br>
+<br>
 Hello There!
 It's a repository showcasing my CSE2114 (Computer Architecture Sessional) project. The task was to build a 29 bit computer with at least 4 instructions. As it was an open ended project I added some extra objectives.
 
