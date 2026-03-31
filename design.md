@@ -138,4 +138,16 @@ The register r0 is hardwired to 0 and r16 is a random generator. The Register fi
 
 ![vc.png](./assets/vc.png)
 
+### Jumps
 
+`jr` jump relative
+`jal` jump and link (previous location stored in rd)
+
+| Instruction | Decimal Opcode | Binary Opcode (6-bit) | Mathematical Condition | Description                 |
+|-------------|---------------|-----------------------|-----------------------|-------------------------------|
+| bg          | 33            | 100001| a > b | Branch if greater than        |
+| be          | 34            | 100010| a = b | Branch if equal               |
+| bge         | 35            | 100011| a ≥ b | Branch if greater or equal    |
+| bl          | 36            | 100100| a < b | Branch if less than           |
+| bne         | 37            | 100101| a ≠ b | Branch if not equal           |
+| ble         | 38            | 100110| a ≤ b | Branch if less or equal       |
